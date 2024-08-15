@@ -1,11 +1,224 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
+
 import styles from "@/styles/Home.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import Programa from "@/components/sectionPrograma/programa";
+
+
+import React, {useEffect, useState , useRef} from "react";
+
+
 
 export default function Home() {
+
+  let vermelho = styles.vermelho;
+  let branco = styles.branco;
+
+  const[solMae , setSolMAe] = useState('')
+  const [priVol , setPriVol] = useState('')
+  const [segVol , setSegVol] = useState('')
+  const [modalResult , setModalResult] = useState(false)
+  const [corInput , setCorInput] = useState(branco)
+  const [corInputC1 , setCorInputC1] = useState(branco)
+  const [corInputV1 , setCorInputV1] = useState(branco)
+  const [campo , setCampo] = useState('')
+  const [circulo , setCirculo] = useState(styles.desaparecer)
+
+
+ 
+  const [res , setRes] = useState('')
+
+
+ 
+
+
+
+
+  const modRef = useRef()
+
+
+ 
+
+
+  function ClickOut(ev){
+
+    if(modRef.current && !modRef.current.contains(ev.target)){
+
+      setModalResult(!modalResult)
+
+    }
+
+
+  }
+
+
+
+  function changeSolMae(ev){
+
+    setSolMAe(ev.target.value)
+   
+
+  }
+
+  function changePriVol(ev){
+
+      setPriVol(ev.target.value)
+  }
+
+  function changeSegVol(ev){
+
+      setSegVol(ev.target.value)
+  }
+
+
+  function Calculo( c , c1 , c2){
+
+    c= parseFloat(c)
+    c1=parseFloat(c1)
+    c2= parseFloat(c2)
+
+    let res = (c1*c2)/c
+
+    res = res.toFixed(2)
+
+     if(isNaN(res)){
+
+      setModalResult(false)
+      
+
+     }else {
+
+        setRes( res + "mL")
+        setModalResult(true)
+      
+
+     }
+
+
+     if(solMae.length === 0){
+
+      setCorInput(vermelho)
+      setCampo('preencha os campos obrigatórios')
+      setCirculo(styles.aparecer)
+
+    }
+
+    if(priVol.length === 0){
+
+      setCorInputV1(vermelho)
+      setCampo('preencha os campos obrigatórios')
+      setCirculo(styles.aparecer)
+
+    }
+
+    if(segVol.length === 0){
+
+      setCorInputC1(vermelho)
+      setCampo('Preencha os campos obrigatórios')
+      setCirculo(styles.aparecer)
+
+    }
+
+
+    if(solMae === "0"){
+
+        setCampo("Valor desse campo não pode ser zero")
+        setModalResult(false)
+        setCirculo(styles.aparecer)
+        setCorInput(vermelho)
+
+    }
+
+    if(priVol === "0"){
+
+      setCampo("Valor desse campo não pode ser zero")
+      setModalResult(false)
+      setCirculo(styles.aparecer)
+      setCorInputV1(vermelho)
+
+    }
+
+    if(segVol === "0"){
+
+      setCampo("Valor desse campo não pode ser zero")
+      setModalResult(false)
+      setCirculo(styles.aparecer)
+      setCorInputC1(vermelho)
+
+    }
+
+  }
+    
+    
+    
+
+  function Limpar(){
+
+    setSolMAe('')
+    setPriVol('')
+    setSegVol('')
+    setModalResult(false)
+    setCorInput(branco)
+    setCorInputC1(branco)
+    setCorInputV1(branco)
+    setCampo('')
+    setCirculo(styles.desaparecer)
+
+  }
+
+
+
+  function closeModal(){
+
+    setModalResult(false)
+
+
+  }
+
+
+  useEffect(()=>{
+
+    if(solMae.length > 0){
+
+      setCorInput(branco)
+      setCampo('')
+      setCirculo(styles.desaparecer)
+     
+    }
+
+    
+  },[solMae])
+
+  useEffect(()=>{
+
+    if(priVol.length > 0){
+
+      setCorInputV1(branco)
+      setCampo('')
+      setCirculo(styles.desaparecer)
+     
+    }
+
+
+  },[priVol])
+
+  useEffect(()=>{
+
+    if(segVol.length > 0){
+
+      setCorInputC1(branco)
+      setCampo('')
+      setCirculo(styles.desaparecer)
+     
+    }
+
+
+  },[segVol])
+  
+
+
+
   return (
     <>
       <Head>
@@ -14,100 +227,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      <main onClick={ClickOut} >
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
+        <Programa
+        
+        c={solMae}
+        changeSolMAe={changeSolMae}
+        changePri={changePriVol}
+        changeSeg={changeSegVol}
+        pv={priVol}
+        sv={segVol}
+        resultado={res}
+        calc = {Calculo}
+        limp={Limpar}
+        modal={modalResult}
+        fechar={closeModal}
+        corInput={corInput}
+        corC1={corInputC1}
+        corV1={corInputV1}
+        campo={campo}
+        modRef={modRef}
+        clickOut={ClickOut}
+        circulo={circulo}
+        
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        
+        
+        />
+        
       </main>
     </>
   );

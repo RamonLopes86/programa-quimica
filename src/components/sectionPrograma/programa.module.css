@@ -1,0 +1,365 @@
+
+.boxMaior{
+
+    background-color:#1f53bbe1;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 1024px;
+    min-height: 500px;
+    overflow:hidden;
+    position: relative;
+    
+    
+}
+
+
+.boxMaior .boxImage{
+
+    width: 60%;
+    
+    
+}
+
+
+.boxMaior .formulario{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    width: 70%;
+}
+
+
+
+.boxMaior .formulario .titulo{
+
+    width: 100%;
+    padding: 10px 15px;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.589);
+
+}
+
+   
+
+.boxMaior .formulario .boxInput{
+
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: rgba(36, 29, 29, 0.849);
+    padding: 20px 10px;
+    border-radius: 10px;
+    color: white;
+}
+    
+
+.boxMaior .formulario .imgAtomo{
+
+    width: 140px;
+    height: fit-content;
+    filter: drop-shadow(5px 3px 3px rgba(0, 0, 0, 0.671));
+    animation-name: move;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    padding: 5px 0px;
+    
+}
+    
+
+.boxMaior h1{
+
+    letter-spacing: 2px;
+    color: white;
+}
+
+.boxMaior form{
+
+    
+    width:100%;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+    
+.boxMaior  form input{
+
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.6rem;
+    text-indent: 20px;
+
+}
+    
+
+.boxMaior .imgPlano{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    
+}
+
+
+.boxMaior .botaoCalc{
+
+    width: 40%;
+    padding: 10px 5px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.781);
+    background-color:#0D9DCA;
+    color: white;
+}
+
+.boxMaior .botaoLimpar{
+
+    width: 40%;
+    padding: 10px 5px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.548);
+    background-color: #dd1010;
+    color: white;
+
+
+}
+
+.boxMaior form input::placeholder{
+
+    font-size: 0.8rem;
+    
+    
+}
+
+.boxMaior .botaoCalc:active{
+
+    box-shadow: 0px 3px 2px rgba(0,0,0,0.781);
+    transform: translateY(2px);
+
+}
+
+.boxMaior .botaoLimpar:active{
+
+    box-shadow: 0px 3px 2px rgba(0,0,0,0.548);
+    transform: translateY(2px);
+
+}
+
+
+.boxMaior .formulario .boxBotao{
+
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px 0px;
+}
+
+
+.boxMaior .resultado{
+
+    width: 60%;
+    padding: 8px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 233, 105);
+    text-align: center;
+    font-size: 1.4rem;
+
+}
+
+
+.boxMaior .boxMsg .msg{
+
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.644);
+   
+    
+}
+
+.boxMaior .boxMsg{
+
+    text-align: center;
+    
+    width: calc(100% - 40px);
+    margin: 0px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+    
+
+
+.boxMaior .boxMsg .circulo{
+
+    width: 17px;
+    height: 17px;
+    border: 2px solid rgba(0, 0, 0, 0.575);
+    border-radius: 100%;
+    border-top: 2px solid red;
+    
+    margin: 5px 0px;
+    animation-name: roda;
+    animation-duration: 800ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+
+@keyframes roda {
+
+
+    0%{
+
+        transform: rotate(0deg);
+    }
+
+    100%{
+
+        transform: rotate(360deg);
+    }
+
+}
+
+
+
+@keyframes move {
+    
+    100%{
+
+        transform: rotate(360deg);
+
+        transition: all 500ms;   
+        
+        
+    }
+
+    
+
+}
+
+
+
+
+
+
+@media screen and (max-width:650px) {
+    
+
+        .boxMaior{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20px;   
+           
+            
+        }
+            
+
+        .boxMaior .boxImage{
+
+            width: 100%;
+            height: 200px;
+
+        }
+
+        .boxMaior .formulario{
+
+            width: 100%;
+        } 
+
+
+        .boxMaior .formulario .imgAtomo{
+
+            display: none;
+        }
+
+        
+
+
+       .boxMaior .formulario .titulo{
+
+
+            font-size: 1rem;
+            padding-top: 25px;
+       }   
+       
+       
+        .boxMaior .formulario .boxBotao{
+
+         padding: 0;   
+
+        }
+        
+
+        
+    }
+
+
+    @media screen and (max-width:410px) {
+        
+
+        .boxMaior .formulario .boxBotao{
+
+            display: flex;
+            flex-direction: column;
+            padding: 0px 20px;
+
+        }
+
+        .boxMaior .formulario .boxBotao button{
+
+            width: 100%;
+            font-size: 1rem;
+            
+        }
+
+        
+        .boxMaior form input::placeholder{
+
+            font-size: 0.7rem;
+            
+            
+        }
+
+        
+
+    }
+            
+            
+
+
+
+
+
+
+
+   
+   
+
